@@ -12,7 +12,8 @@ function App() {
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('home'); 
-  const [username, setUsername] = useState('');  
+  const [username, setUsername] = useState('');
+  const [cartItems, setCartItems] = useState([]);  // Add this state
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
@@ -26,7 +27,7 @@ function App() {
     setIsLoggedIn(true);
     setCurrentPage('home');
     setUsername(username);
-};
+  };
 
   const handlePageChange = (page) => {
     setCurrentPage(page); 
@@ -61,9 +62,9 @@ function App() {
         case 'OurStory':
           return <OurStory username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;
         case 'Menu':
-          return <Menu username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;
+          return <Menu username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;
         case 'YourOrders':
-          return <YourOrders username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;  
+          return <YourOrders username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;  
         case 'quit':
           setIsLoggedIn(false);
           setCurrentForm('login');
@@ -85,3 +86,4 @@ function App() {
 }
 
 export default App;
+

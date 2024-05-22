@@ -1,0 +1,201 @@
+.menu-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f7f7f7;
+    background-size: cover;
+    background-position: center;
+}
+
+.menu-top-row {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.menu-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-title {
+    font-size: 2em;
+    color: #000;
+    text-align: center;
+    flex: 1;
+}
+
+.menu-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    width: 150px;
+    height: 50px;
+}
+
+.menu-button:hover {
+    color: black;
+    background-color: white;
+}
+
+.menu-button.quit {
+    background-color: #dc3545;
+}
+
+.menu-button:hover.quit {
+    background-color: #c82333;
+}
+
+.orders-container {
+    width: 50%;
+    margin-top: 80px; /* Adjusted to ensure it appears below the fixed top row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: -300px; /* Move the container slightly to the left */
+}
+
+.checkout-title {
+    font-size: 2.5em;
+    color: #000;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.order-headers {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.header-item {
+    flex: 2;
+    text-align: right;
+    margin-right: 100px; /* Move Item header to the left */
+}
+
+.header-size, .header-quantity {
+    flex: 1;
+    text-align: left; /* Align to the left */
+    margin-left: 10px; /* Move Size and Quantity headers to the left */
+}
+
+.header-price {
+    flex: 1;
+    text-align: right; /* Align to the right */
+    margin-right: 60px; /* Move Price header to the right */
+}
+
+.order-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.order-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.order-details {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-name {
+    font-size: 1.2em;
+    margin: 0 10px;
+    flex: 2; /* Ensure consistent spacing */
+}
+
+.order-size {
+    margin: 0 10px;
+    flex: 1; /* Ensure consistent spacing */
+    text-align: left; /* Align to the left */
+}
+
+.order-quantity {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 10px;
+    flex: 1; /* Ensure consistent spacing */
+    text-align: left; /* Align to the left */
+}
+
+.order-price {
+    margin: 0 10px;
+    flex: 1; /* Ensure consistent spacing */
+    text-align: right; /* Align to the right */
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 0 0 auto; /* Prevents flex-grow */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.checkout-button {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Makes the button as wide as the container */
+    font-size: 1.2em; /* Makes the button text larger */
+}
+
+.checkout-button:hover {
+    background-color: #218838;
+}

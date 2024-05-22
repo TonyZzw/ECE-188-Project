@@ -12,7 +12,7 @@ const categories = {
     CoffeeBeans: ['Espresso Beans', 'Gourmet Beans', 'Green beans', 'House blend Beans', 'Organic Beans', 'Premium Beans']
 };
 
-function Menu({ username, onBackToHome, onPageChange }) {
+function Menu({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
     const [messages, setMessages] = useState([]);
     const [isChatVisible, setIsChatVisible] = useState(true);
 
@@ -24,6 +24,20 @@ function Menu({ username, onBackToHome, onPageChange }) {
 
     const toggleChatVisibility = () => {
         setIsChatVisible(!isChatVisible);
+    };
+
+    const handleAddToCart = (item) => {
+        const existingItemIndex = cartItems.findIndex(
+            cartItem => cartItem.name === item.name && cartItem.size === item.size
+        );
+        if (existingItemIndex !== -1) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems[existingItemIndex].quantity += 1;
+            updatedCartItems[existingItemIndex].totalPrice += item.unitPrice; // Update total price
+            setCartItems(updatedCartItems);
+        } else {
+            setCartItems([...cartItems, item]);
+        }
     };
 
     return (
@@ -59,7 +73,7 @@ function Menu({ username, onBackToHome, onPageChange }) {
                         <h2 className="category-title">{category}</h2>
                         <div className="product-list">
                             {categories[category].map(product => (
-                                <ProductItem key={product} category={category} product={product} />
+                                <ProductItem key={product} category={category} product={product} onAddToCart={handleAddToCart} />
                             ))}
                         </div>
                     </div>
