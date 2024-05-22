@@ -1,0 +1,184 @@
+.home-container {
+  position: relative; /* Changed to relative to work well with fixed child */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f7f7; /* Light gray background color */
+  background-size: cover;
+  background-position: center;
+}
+
+.home-top-row {
+  position: fixed; /* Fixes the row at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7; /* Light gray background color */
+  padding: 10px 0; /* Add some padding for spacing */
+  z-index: 1000; /* Ensures it stays on top */
+}
+
+.home-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-title {
+  font-size: 2em;
+  color: #000;
+  text-align: center;
+  flex: 1;
+}
+
+.home-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  width: 150px; 
+  height: 50px; 
+}
+
+.home-button:hover {
+  color: black;
+  background-color: white;
+}
+
+.home-button.quit {
+  background-color: #dc3545;
+}
+
+.home-button:hover.quit {
+  background-color: #c82333;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 80px; 
+  width: 100%;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+  justify-content: flex-start;
+  padding-right: 10%;
+}
+
+.text-content p:first-child {
+  font-size: 1.5em;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.text-content h2 {
+  font-size: 8em;
+  color: #000;
+  margin: 0;
+  line-height: 1;
+}
+
+.text-content p:last-child {
+  font-size: 1.5em;
+  color: #000;
+  margin-top: 10px;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 10%; 
+  align-items: center;
+}
+
+.image-content video {
+  max-width: 100%;
+  height: auto;
+}
+
+.middle-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.image-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-side img {
+  max-width: 100%;
+  height: auto;
+}
+
+.text-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.text-side h2 {
+  font-size: 5em; /* Adjust the font size here */
+}
+
+.text-side p {
+  font-size: 1.5em; /* Adjust the font size here */
+}
+
+.cup-size-heading {
+  text-align: center;
+  font-size: 3.5em;
+  margin-bottom: 5px; /* Reduced space */
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensures the wrapper spans the full width */
+  padding: 10px 0; /* Reduced space */
+}
+
+.canvas-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px; /* Adds spacing between the containers */
+}
+
+.spline-canvas {
+  width: 100%;
+  height: 150px; /* Adjusted height */
+}
+
+.canvas-container p:first-of-type {
+  margin-top: 10px;
+  font-size: 2em; /* Larger font size for cup labels */
+}
+
+.canvas-container p:last-of-type {
+  margin-top: 10px;
+  font-size: 1em; /* Smaller font size for 'start from' text */
+}
