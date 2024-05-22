@@ -47,7 +47,7 @@ function Home({ username, onPageChange }) {
 
       <div className="content-container">
         <div className="text-content">
-          <p>Origin Coffee - Speciality Coffee Roasters</p>
+          <p>Taste Your Coffee Here @</p>
           <h2>COZY CORNER COFFEE</h2>
           <p>Embrace the tranquility and cherish the moments of solitude, where you can find peace and reconnect with yourself</p>
         </div>
