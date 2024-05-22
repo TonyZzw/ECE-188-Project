@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
+import { Application } from '@splinetool/runtime';
 import './Home.css';
+
 import coffeeVideo from '../Assets/concern.mp4';
 import coffeeBean from '../Assets/coffeeBean.jpg';
 import groundCoffee from '../Assets/groundCoffee2.jpg';
 import coffee from '../Assets/coffee.jpg';
-import { Application } from '@splinetool/runtime';
+
+import scone from '../Assets/menu_image/Bakery/Scone.jpg';
+import dripCoffee from '../Assets/menu_image/Coffee/DripCoffee.jpg';
+import brewedChaiTea from '../Assets/menu_image/Tea/BrewedChaiTea.jpg';
 
 function Home({ username, onPageChange }) {
 
@@ -99,6 +104,7 @@ function Home({ username, onPageChange }) {
       </div>
 
 
+
       <div className="cup-size-heading">
         <h2>Pick your cup size</h2>
       </div>
@@ -108,25 +114,62 @@ function Home({ username, onPageChange }) {
           <div className="canvas-container">
             <canvas id="canvas3d-1" className="spline-canvas"></canvas>
             <p>Small Cup</p>
-            <p>start from $2.00</p>
+            <p>Start from $2.00</p>
           </div>
           <div className="canvas-container">
             <canvas id="canvas3d-2" className="spline-canvas"></canvas>
             <p>Medium Cup</p>
-            <p>start from $3.00</p>
+            <p>Start from $3.00</p>
           </div>
           <div className="canvas-container">
             <canvas id="canvas3d-3" className="spline-canvas"></canvas>
             <p>Large Cup</p>
-            <p>start from $4.00</p>
+            <p>Start from $4.00</p>
           </div>
         </div>
       </div>
 
+
+
+      <div className="best-seller-heading">
+        <h2>Best Sellers</h2>
+      </div>
+      
+      <div className="best-seller-row">
+        <div className="best-seller-card">
+          <img src={dripCoffee} alt="Drip Coffee" className="best-seller-image" />
+          <div className="best-seller-name">Drip Coffee</div>
+          <div className="best-seller-description">Rich and smooth drip coffee.</div>
+        </div>
+      </div>
+      <div className="best-seller-row">
+        <div className="best-seller-card">
+          <img src={brewedChaiTea} alt="Brewed Chai Tea" className="best-seller-image" />
+          <div className="best-seller-name">Brewed Chai Tea</div>
+          <div className="best-seller-description">Freshly brewed chai tea.</div>
+        </div>
+      </div>
+      <div className="best-seller-row">
+        <div className="best-seller-card">
+          <img src={scone} alt="Scone" className="best-seller-image" />
+          <div className="best-seller-name">Scone</div>
+          <div className="best-seller-description">A deliciously light and fluffy scone.</div>
+        </div>
+      </div>
+
+
+
+      <div className="footer">
+        <hr className="footer-line"/>
+        <div className="footer-content">
+          <p>© 2024 Cozy Corner Coffee All rights reserved.</p>
+          <p><a href="/terms-of-use">Terms of Use</a></p>
+          <p><a href="/privacy-policy">Privacy Policy</a></p>
+        </div>
+      </div>
 
     </div>
   );
 }
 
 export default Home;
-
