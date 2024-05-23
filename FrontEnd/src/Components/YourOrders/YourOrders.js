@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './YourOrders.css';
 
 function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
+    const [activeButton, setActiveButton] = useState('YourOrders');
+
+    const handleButtonClick = (page) => {
+        setActiveButton(page);
+        onPageChange(page);
+    };
+
     const handleQuantityChange = (index, newQuantity) => {
         const updatedCartItems = [...cartItems];
         if (newQuantity <= 0) {
@@ -20,22 +27,37 @@ function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartIt
     };
 
     return (
-        <div className="menu-container">
-            <div className="menu-top-row">
-                <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('Menu')}>Menu</button>
+        <div className="yourorder-container">
+            <div className="yourorder-top-row">
+                <div className="yourorder-item">
+                    <button 
+                        className={`yourorder-button ${activeButton === 'Menu' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('Menu')}
+                    >
+                        Menu
+                    </button>
                 </div>
-                <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('YourOrders')}>Your Orders</button>
+                <div className="yourorder-item">
+                    <button 
+                        className={`yourorder-button ${activeButton === 'YourOrders' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('YourOrders')}
+                    >
+                        Your Orders
+                    </button>
                 </div>
-                <div className="menu-item">
-                    <h1 className="menu-title">Welcome {username}</h1>
+                <div className="yourorder-item">
+                    <h1 className="yourorder-title">Welcome {username}</h1>
                 </div>
-                <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('OurStory')}>Our Story</button>
+                <div className="yourorder-item">
+                    <button 
+                        className={`yourorder-button ${activeButton === 'OurStory' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('OurStory')}
+                    >
+                        Our Story
+                    </button>
                 </div>
-                <div className="menu-item">
-                    <button className="menu-button quit" onClick={onBackToHome}>Back</button>
+                <div className="yourorder-item">
+                    <button className="story-button quit" onClick={onBackToHome}>Back</button>
                 </div>
             </div>
 

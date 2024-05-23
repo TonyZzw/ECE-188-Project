@@ -15,6 +15,12 @@ const categories = {
 function Menu({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
     const [messages, setMessages] = useState([]);
     const [isChatVisible, setIsChatVisible] = useState(true);
+    const [activeButton, setActiveButton] = useState('Menu');
+
+    const handleButtonClick = (page) => {
+        setActiveButton(page);
+        onPageChange(page);
+    };
 
     const sendMessage = (msg) => {
         if (msg.trim() !== '') {
@@ -44,16 +50,31 @@ function Menu({ username, onBackToHome, onPageChange, cartItems, setCartItems })
         <div className="menu-container">
             <div className="menu-top-row">
                 <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('Menu')}>Menu</button>
+                    <button 
+                        className={`menu-button ${activeButton === 'Menu' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('Menu')}
+                    >
+                        Menu
+                    </button>
                 </div>
                 <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('YourOrders')}>Your Orders</button>
+                    <button 
+                        className={`menu-button ${activeButton === 'YourOrders' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('YourOrders')}
+                    >
+                        Your Orders
+                    </button>
                 </div>
                 <div className="menu-item">
                     <h1 className="menu-title">Welcome {username}</h1>
                 </div>
                 <div className="menu-item">
-                    <button className="menu-button" onClick={() => onPageChange('OurStory')}>Our Story</button>
+                    <button 
+                        className={`menu-button ${activeButton === 'OurStory' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('OurStory')}
+                    >
+                        Our Story
+                    </button>
                 </div>
                 <div className="menu-item">
                     <button className="menu-button quit" onClick={onBackToHome}>Back</button>

@@ -1,23 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./OurStory.css";
 
 function OurStory({ username, onBackToHome, onPageChange }) {
 
+    const [activeButton, setActiveButton] = useState('OurStory');
+
+    const handleButtonClick = (page) => {
+        setActiveButton(page);
+        onPageChange(page);
+    };
 
     return (
         <div className="story-container">
             <div className="story-top-row">
                 <div className="story-item">
-                    <button className="story-button" onClick={() => onPageChange('Menu')}>Menu</button>
+                    <button 
+                        className={`story-button ${activeButton === 'Menu' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('Menu')}
+                    >
+                        Menu
+                    </button>
                 </div>
                 <div className="story-item">
-                    <button className="story-button" onClick={() => onPageChange('YourOrders')}>Your Orders</button>
+                    <button 
+                        className={`story-button ${activeButton === 'YourOrders' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('YourOrders')}
+                    >
+                        Your Orders
+                    </button>
                 </div>
                 <div className="story-item">
                     <h1 className="story-title">Welcome {username}</h1>
                 </div>
                 <div className="story-item">
-                    <button className="story-button" onClick={() => onPageChange('OurStory')}>Our Story</button>
+                    <button 
+                        className={`story-button ${activeButton === 'OurStory' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('OurStory')}
+                    >
+                        Our Story
+                    </button>
                 </div>
                 <div className="story-item">
                     <button className="story-button quit" onClick={onBackToHome}>Back</button>

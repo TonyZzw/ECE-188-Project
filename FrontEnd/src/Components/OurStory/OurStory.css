@@ -52,6 +52,11 @@
   height: 50px; 
 }
 
+.story-button.active {
+  background-color: white;
+  color: black;
+}
+
 .story-button:hover {
   color: black;
   background-color: white;

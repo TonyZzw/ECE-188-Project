@@ -1,4 +1,4 @@
-.menu-container {
+.yourorder-container {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -10,7 +10,7 @@
     background-position: center;
 }
 
-.menu-top-row {
+.yourorder-top-row {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,21 +23,21 @@
     z-index: 1000;
 }
 
-.menu-item {
+.yourorder-item {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.menu-title {
+.yourorder-title {
     font-size: 2em;
     color: #000;
     text-align: center;
     flex: 1;
 }
 
-.menu-button {
+.yourorder-button {
     background-color: black;
     color: white;
     border: none;
@@ -51,16 +51,21 @@
     height: 50px;
 }
 
-.menu-button:hover {
+.yourorder-button.active {
+  background-color: white;
+  color: black;
+}
+
+.yourorder-button:hover {
     color: black;
     background-color: white;
 }
 
-.menu-button.quit {
+.yourorder-button.quit {
     background-color: #dc3545;
 }
 
-.menu-button:hover.quit {
+.yourorder-button:hover.quit {
     background-color: #c82333;
 }
 
