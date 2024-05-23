@@ -73,7 +73,7 @@ function Menu({ username, onBackToHome, onPageChange, cartItems, setCartItems })
                         className={`menu-button ${activeButton === 'SelectionForYou' ? 'active' : ''}`} 
                         onClick={() => handleButtonClick('SelectionForYou')}
                     >
-                        SelectionForYou
+                        Selection For You
                     </button>
                 </div>
                 <div className="menu-item">

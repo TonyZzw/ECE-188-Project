@@ -49,15 +49,15 @@ function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartIt
                     <h1 className="yourorder-title">Welcome {username}</h1>
                 </div>
                 <div className="yourorder-item">
-                    <button 
-                        className={`yourorder-button ${activeButton === 'OurStory' ? 'active' : ''}`} 
-                        onClick={() => handleButtonClick('OurStory')}
+                <button 
+                        className={`yourorder-button ${activeButton === 'SelectionForYou' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('SelectionForYou')}
                     >
-                        Our Story
+                        Selection For You
                     </button>
                 </div>
-                <div className="yourorder-item">
-                    <button className="story-button quit" onClick={onBackToHome}>Back</button>
+                <div className="menu-item">
+                    <button className="menu-button quit" onClick={onBackToHome}>Back</button>
                 </div>
             </div>
 
