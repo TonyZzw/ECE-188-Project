@@ -6,7 +6,8 @@ import Home from "./Components/HomePage/Home";
 import Menu from "./Components/Menu/Menu";
 import YourOrders from "./Components/YourOrders/YourOrders"; 
 import VerificationProcess from "./Components/LoginSignup/VerificationProcess"; 
-import OurStory from "./Components/OurStory/OurStory";
+// import OurStory from "./Components/OurStory/OurStory";
+import SelectionForYou from "./Components/SelectionForYou/SelectionForYou";
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
@@ -59,8 +60,10 @@ function App() {
       switch (currentPage) {
         case 'home':
           return <Home username={username} onPageChange={handlePageChange} />;
-        case 'OurStory':
-          return <OurStory username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;
+        case 'SelectionForYou':  // 新增的页面切换选项
+          return <SelectionForYou username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} />;
+        // case 'OurStory':
+        //   return <OurStory username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;
         case 'Menu':
           return <Menu username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;
         case 'YourOrders':
