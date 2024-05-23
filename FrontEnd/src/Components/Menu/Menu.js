@@ -70,10 +70,10 @@ function Menu({ username, onBackToHome, onPageChange, cartItems, setCartItems })
                 </div>
                 <div className="menu-item">
                     <button 
-                        className={`menu-button ${activeButton === 'OurStory' ? 'active' : ''}`} 
-                        onClick={() => handleButtonClick('OurStory')}
+                        className={`menu-button ${activeButton === 'SelectionForYou' ? 'active' : ''}`} 
+                        onClick={() => handleButtonClick('SelectionForYou')}
                     >
-                        Our Story
+                        SelectionForYou
                     </button>
                 </div>
                 <div className="menu-item">
