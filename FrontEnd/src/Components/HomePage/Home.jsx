@@ -41,7 +41,7 @@ function Home({ username, onPageChange }) {
           <h1 className="home-title">Welcome {username}</h1>
         </div>
         <div className="home-item">
-          <button className="home-button" onClick={() => onPageChange('OurStory')}>Our Story</button>
+          <button className="home-button" onClick={() => onPageChange('SelectionForYou')}>SelectionForYou</button>
         </div>
         <div className="home-item">
           <button className="home-button quit" onClick={() => onPageChange('quit')}>Quit</button>
