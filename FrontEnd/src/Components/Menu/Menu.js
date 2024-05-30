@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 
 const categories = {
     Coffee: ['Barista Espresso', 'Drip coffee', 'Gourmet brewed coffee', 'Organic brewed coffee', 'Premium brewed coffee'],
-    Chocolate: ['Hot chocolate', 'Drinking Chocolate', 'Organic Chocolate'],
+    Chocolate: ['Hot chocolate'],
     Tea: ['Brewed Black tea', 'Brewed Chai tea', 'Brewed Green tea', 'Brewed herbal tea'],
     Bakery: ['Biscotti', 'Pastry', 'Scone'],
     LooseTea: ['Black tea', 'Chai tea', 'Green tea', 'Herbal tea'],

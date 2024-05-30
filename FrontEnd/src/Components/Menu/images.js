@@ -5,8 +5,6 @@ import OrganicBrewedCoffee from '../Assets/menu_image/Coffee/OrganicBrewedCoffee
 import PremiumBrewedCoffee from '../Assets/menu_image/Coffee/PremiumBrewedCoffee.jpg';
 
 import HotChocolate from '../Assets/menu_image/Chocolate/HotChocolate.jpg';
-import DrinkingChocolate from '../Assets/menu_image/Chocolate/DrinkingChocolate.jpg';
-import OrganicChocolate from '../Assets/menu_image/Chocolate/OrganicChocolate.jpg';
 
 import BlackTea from '../Assets/menu_image/LooseTea/BlackTea.jpg';
 import ChaiTea from '../Assets/menu_image/LooseTea/ChaiTea.jpg';
@@ -39,9 +37,7 @@ const images = {
         'Premium brewed coffee': PremiumBrewedCoffee
     },
     Chocolate: {
-        'Hot chocolate': HotChocolate,
-        'Drinking Chocolate': DrinkingChocolate,
-        'Organic Chocolate': OrganicChocolate
+        'Hot chocolate': HotChocolate
     },
     Tea: {
         'Brewed Black tea': BrewedBlackTea,

@@ -6,7 +6,6 @@ import Home from "./Components/HomePage/Home";
 import Menu from "./Components/Menu/Menu";
 import YourOrders from "./Components/YourOrders/YourOrders"; 
 import VerificationProcess from "./Components/LoginSignup/VerificationProcess"; 
-// import OurStory from "./Components/OurStory/OurStory";
 import SelectionForYou from "./Components/SelectionForYou/SelectionForYou";
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('home'); 
   const [username, setUsername] = useState('');
-  const [cartItems, setCartItems] = useState([]);  // Add this state
+  const [cartItems, setCartItems] = useState([]);  
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
@@ -60,10 +59,8 @@ function App() {
       switch (currentPage) {
         case 'home':
           return <Home username={username} onPageChange={handlePageChange} />;
-        case 'SelectionForYou':  // 新增的页面切换选项
-          return <SelectionForYou username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} />;
-        // case 'OurStory':
-        //   return <OurStory username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange}/>;
+        case 'SelectionForYou':  
+          return <SelectionForYou username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems}/>;
         case 'Menu':
           return <Menu username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;
         case 'YourOrders':
