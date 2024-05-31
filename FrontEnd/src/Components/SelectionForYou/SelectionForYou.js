@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './SelectionForYou.css';
-import recommendProduct from './recommend';
 import images from '../Menu/images';
 
 const productDetails = {
@@ -44,19 +43,40 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
 
   const handleSurveySubmit = () => {
     console.log('User survey:', survey);
-    const recommendation = recommendProduct(survey);
-    setRecommendedProduct(recommendation);
-
-    const categoryKeys = Object.keys(images);
-    for (const category of categoryKeys) {
-      const productImage = images[category][recommendation];
-      if (productImage) {
-        setRecommendedImage(productImage);
-        break;
+  
+    const url = 'http://localhost:5001/recommend';
+  
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(survey),
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();  // Convert the response to JSON
       }
-    }
+      throw new Error('Network response was not ok.');  // Handle network errors
+    })
+    .then(data => {
+      console.log('Recommendation received:', data);
+      setRecommendedProduct(data.product);
+  
+      const categoryKeys = Object.keys(images);
+      for (const category of categoryKeys) {
+        const productImage = images[category][data.product];
+        if (productImage) {
+          setRecommendedImage(productImage);
+          break;
+        }
+      }
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
   };
-
+  
   const handleSizeClick = (size) => {
     setSelectedSize(size);
     setIsAdded(false); 
