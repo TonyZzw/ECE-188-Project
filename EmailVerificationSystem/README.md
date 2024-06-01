@@ -1,6 +1,6 @@
 # Email Verification System
 
-An Email Verification System for Web Games is a security feature that ensures all player accounts are linked to a valid, owner-verified email address. This system helps prevent fake account creation and enhances overall game security. 
+An Email Verification System for Web is a security feature 
 
 ## Getting Started
 
