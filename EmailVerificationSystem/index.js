@@ -153,26 +153,29 @@ app.post('/confirmation', async (req, res) => {
 
     try {
 
-        // const cartDetailsHTML = cartItems.map(item => 
-        //     `<li>${item.name}, Size: ${item.size}, Quantity: ${item.quantity}, Price: $${item.totalPrice.toFixed(2)}</li>`
-        // ).join('');
+        const cartDetailsHTML = cartItems.map(item => 
+            `<li>${item.name}, Size: ${item.size}, Quantity: ${item.quantity}, Price: $${item.totalPrice.toFixed(2)}</li>`
+        ).join('');
 
-        // const emailContent = `
-        //     <h1>Order Confirmation for ${username}</h1>
-        //     <p>Thank you for your purchase!</p>
-        //     <h3>Order Details:</h3>
-        //     <ul>${cartDetailsHTML}</ul>
-        //     <p>Total Price: $${totalPrice}</p>
-        // `;
+        const emailContent = `
+            <h1>Order Confirmation for ${username}</h1>
+            <p>Thank you for your purchase!</p>
+            <h3>Order Details:</h3>
+            <ul>${cartDetailsHTML}</ul>
+            <p>Total Price: $${totalPrice}</p>
+        `;
 
-        // await transporter.sendMail({
-        //     from: process.env.EMAIL,
-        //     to: email,
-        //     subject: "Order Confirmation",
-        //     html: emailContent,
-        // });
+        await transporter.sendMail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: "Order Confirmation",
+            html: emailContent,
+        });
 
-        res.send({ message: 'Confirmation email sent successfully!' });
+        res.send({
+            success: true,
+            message: 'Confirmation email sent successfully!',
+        });
     } catch (error) {
         console.error('Error during sending confirmation email:', error);
         res.status(500).send('An error occurred while sending confirmation email');

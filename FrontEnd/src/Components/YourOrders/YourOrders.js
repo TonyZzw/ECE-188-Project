@@ -52,36 +52,39 @@ function YourOrders({ username, email, onBackToHome, onPageChange, cartItems, se
             cartItems: cartItems,
             totalPrice: calculateTotalPrice()
         };
+
+        setShowPaymentModal(false);
+        setCartItems([]);
     
-        try {
-            const response = await fetch('http://127.0.0.1:3000/confirmation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+        // try {
+        //     const response = await fetch('http://127.0.0.1:3000/confirmation', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(payload)
+        //     });
     
-            console.log('HTTP Status:', response.status); // Log the HTTP status
+        //     console.log('HTTP Status:', response.status); // Log the HTTP status
     
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+        //     if (!response.ok) {
+        //         throw new Error(`HTTP error! status: ${response.status}`);
+        //     }
     
-            const responseData = await response.json();
-            console.log('Server Response:', responseData);
+        //     const responseData = await response.json();
+        //     console.log('Server Response:', responseData);
     
-            if (responseData.message === "Confirmation email sent successfully!") {
-                setShowPaymentModal(false);
-                setCartItems([]);
-            } else {
-                console.error('Payment processing failed:', responseData.message);
-            }
+        //     if (responseData.success) {
+        //         setShowPaymentModal(false);
+        //         setCartItems([]);
+        //     } else {
+        //         console.error('Payment processing failed:', responseData.message);
+        //     }
     
-        } catch (error) {
-            console.error('Error during payment submission:', error);
-            console.log('Falling into error block.');
-        }
+        // } catch (error) {
+        //     console.error('Error during payment submission:', error);
+        //     console.log('Falling into error block.');
+        // }
     };
     
 
