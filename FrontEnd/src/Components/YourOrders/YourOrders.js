@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import PaymentModal from '../Payment/PaymentModal'
 import './YourOrders.css';
 
-function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
+function YourOrders({ username, email, onBackToHome, onPageChange, cartItems, setCartItems }) {
     const [activeButton, setActiveButton] = useState('YourOrders');
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+
+    const calculateTotalPrice = () => {
+        return cartItems.reduce((total, item) => total + item.totalPrice, 0).toFixed(2);
+    };    
 
     const handleButtonClick = (page) => {
         setActiveButton(page);
@@ -12,7 +18,7 @@ function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartIt
     const handleQuantityChange = (index, newQuantity) => {
         const updatedCartItems = [...cartItems];
         if (newQuantity <= 0) {
-            updatedCartItems.splice(index, 1); // Remove item if quantity is 0 or less
+            updatedCartItems.splice(index, 1); 
         } else {
             updatedCartItems[index].quantity = newQuantity;
             updatedCartItems[index].totalPrice = newQuantity * updatedCartItems[index].unitPrice;
@@ -25,6 +31,59 @@ function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartIt
         updatedCartItems.splice(index, 1);
         setCartItems(updatedCartItems);
     };
+
+    const handleCheckout = () => {
+        if (cartItems.length === 0) {
+            console.log('No items in cart.');
+            return;  
+        }
+        console.log('Checkout initiated for:', email);
+        setShowPaymentModal(true); 
+    };
+      
+    const handlePaymentSubmit = async (paymentDetails) => {
+        console.log('Payment Details:', paymentDetails);
+        console.log('Cart Items:', cartItems);
+        console.log('Total Price: $', calculateTotalPrice());
+    
+        const payload = {
+            username: username,
+            email: email,
+            cartItems: cartItems,
+            totalPrice: calculateTotalPrice()
+        };
+    
+        try {
+            const response = await fetch('http://127.0.0.1:3000/confirmation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+    
+            console.log('HTTP Status:', response.status); // Log the HTTP status
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const responseData = await response.json();
+            console.log('Server Response:', responseData);
+    
+            if (responseData.message === "Confirmation email sent successfully!") {
+                setShowPaymentModal(false);
+                setCartItems([]);
+            } else {
+                console.error('Payment processing failed:', responseData.message);
+            }
+    
+        } catch (error) {
+            console.error('Error during payment submission:', error);
+            console.log('Falling into error block.');
+        }
+    };
+    
 
     return (
         <div className="yourorder-container">
@@ -87,8 +146,19 @@ function YourOrders({ username, onBackToHome, onPageChange, cartItems, setCartIt
                         </div>
                     </div>
                 ))}
-                <button className="checkout-button">Checkout</button>
+
+                <hr className="total-divider" />
+                <div className="total-price-container">
+                    <span className="total-price-label">Total Price:</span>
+                    <span className="total-price-value">${calculateTotalPrice()}</span>
+                </div>
+                
+                {showPaymentModal && <PaymentModal onClose={() => setShowPaymentModal(false)} onSubmit={handlePaymentSubmit} />}
+                <button className="checkout-button" onClick={handleCheckout} disabled={cartItems.length === 0}>
+                    Checkout
+                </button>                
             </div>
+
         </div>
     );
 }

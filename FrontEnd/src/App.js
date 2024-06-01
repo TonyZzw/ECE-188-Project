@@ -13,6 +13,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('home'); 
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('')
   const [cartItems, setCartItems] = useState([]);  
 
   const toggleForm = (formName) => {
@@ -23,20 +24,22 @@ function App() {
     setCurrentForm('verification');
   };
   
-  const handleLoginSuccess = (username) => {
+  const handleLoginSuccess = (username, email) => {
     setIsLoggedIn(true);
     setCurrentPage('home');
     setUsername(username);
+    setEmail(email)
   };
 
   const handlePageChange = (page) => {
     setCurrentPage(page); 
   };
 
-  const handleVerificationComplete = (username) => {
+  const handleVerificationComplete = (username, email) => {
     setIsLoggedIn(true); 
     setCurrentPage('home');
     setUsername(username);
+    setEmail(email)
   };
 
   const handleBackToRegister = () => {
@@ -64,7 +67,7 @@ function App() {
         case 'Menu':
           return <Menu username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;
         case 'YourOrders':
-          return <YourOrders username={username} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;  
+          return <YourOrders username={username} email={email} onBackToHome={() => handlePageChange('home')} onPageChange={handlePageChange} cartItems={cartItems} setCartItems={setCartItems} />;  
         case 'quit':
           setIsLoggedIn(false);
           setCurrentForm('login');

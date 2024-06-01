@@ -73,7 +73,7 @@ app.post('/login', async (req, res) => {
         if (match) {
             console.log('Login successful')
             console.log(user.name)
-            res.send({ username: user.name }); 
+            res.send({ username: user.name, email: user.email });
         } else {
             console.log('Password is incorrect')
             res.status(401).send('Password is incorrect');
@@ -138,10 +138,45 @@ app.post('/verify', async (req, res) => {
             name: userInfo.name,
         });
         console.log(userInfo.name)
-        res.send({ verified: true, username: userInfo.name });
+        res.send({ verified: true, username: userInfo.name, email:userInfo.email });
     } else {
         res.status(400).send({ verified: false, message: 'Incorrect or expired verification code.' });
     }
+});
+
+app.post('/confirmation', async (req, res) => {
+    const { username, email, cartItems, totalPrice } = req.body;
+
+    if (!email || cartItems.length === 0) {
+        return res.status(400).send('Missing required fields or cart is empty');
+    }
+
+    try {
+
+        // const cartDetailsHTML = cartItems.map(item => 
+        //     `<li>${item.name}, Size: ${item.size}, Quantity: ${item.quantity}, Price: $${item.totalPrice.toFixed(2)}</li>`
+        // ).join('');
+
+        // const emailContent = `
+        //     <h1>Order Confirmation for ${username}</h1>
+        //     <p>Thank you for your purchase!</p>
+        //     <h3>Order Details:</h3>
+        //     <ul>${cartDetailsHTML}</ul>
+        //     <p>Total Price: $${totalPrice}</p>
+        // `;
+
+        // await transporter.sendMail({
+        //     from: process.env.EMAIL,
+        //     to: email,
+        //     subject: "Order Confirmation",
+        //     html: emailContent,
+        // });
+
+        res.send({ message: 'Confirmation email sent successfully!' });
+    } catch (error) {
+        console.error('Error during sending confirmation email:', error);
+        res.status(500).send('An error occurred while sending confirmation email');
+    } 
 });
 
 app.listen(port, () => {

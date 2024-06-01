@@ -26,7 +26,7 @@ export default function VerificationProcess({ onVerificationComplete, onBackToRe
 
       if (data.verified) {
         console.log('Verification successful, username:', data.username);
-        onVerificationComplete(data.username);  
+        onVerificationComplete(data.username, data.email);  
       } else {
         console.log('Verification failed', data.message);
         setVerificationError('Verification code is incorrect. Please try again.'); 

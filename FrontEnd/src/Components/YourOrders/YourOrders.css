@@ -197,10 +197,32 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Makes the button as wide as the container */
-    font-size: 1.2em; /* Makes the button text larger */
+    width: 100%; 
+    font-size: 1.2em; 
 }
 
 .checkout-button:hover {
     background-color: #218838;
+}
+
+hr {
+    border-top: 1px solid black;
+    width: 100%;  
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.total-price-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 1.2em; 
+}
+
+.total-price-label {
+    font-weight: bold; 
+}
+
+.total-price-value {
+    color: green; 
 }
