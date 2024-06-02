@@ -48,7 +48,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
   const handleSurveySubmit = () => {
     console.log('User survey:', survey);
   
-    const url = 'http://localhost:5001/recommend';
+    const url = 'http://localhost:5002/recommend';
   
     fetch(url, {
       method: 'POST',
