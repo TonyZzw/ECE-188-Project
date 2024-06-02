@@ -4,7 +4,8 @@ from recommend import recommend_product
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/recommend": {"origins": "http://localhost:3000"}}) 
+# CORS(app, resources={r"/recommend": {"origins": "http://localhost:3001"}}) 
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/recommend', methods=['POST'])
 def recommend():

@@ -15,9 +15,13 @@ const productDetails = {
   'Brewed herbal tea': { sizes: ['S', 'M', 'L'], prices: [2.00, 3.00, 4.00] }
 };
 
+const percentageValues = ["0%", "25%", "50%", "75%", "100%", "125%"];
+const descriptions = ["Very Low", "Low", "Medium", "High", "Very High", "Extreme"];
+
 function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
   const [activeButton, setActiveButton] = useState('SelectionForYou');
   const [survey, setSurvey] = useState({
+    type: 'tea',
     acidity: 0,
     bitterness: 0,
     sweetness: 0,
@@ -160,6 +164,23 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
           <div className="survey-card">
             <h2>Choose Your Favour</h2>
             <div className="survey-field">
+              <label>Drink Type:</label>
+              <div className="survey-options">
+                {['tea', 'coffee', 'chocolate'].map((value) => (
+                  <label key={value}>
+                    <input
+                      type="radio"
+                      name="type"
+                      value={value}
+                      checked={survey.type === value}
+                      onChange={handleSurveyChange}
+                    />
+                    {value.charAt(0).toUpperCase() + value.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="survey-field">
               <label>Acidity:</label>
               <div className="survey-options">
                 {[0, 1, 2, 3, 4, 5].map((value) => (
@@ -171,7 +192,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.acidity === value}
                       onChange={handleSurveyChange}
                     />
-                    {value}
+                    {percentageValues[value]}
                   </label>
                 ))}
               </div>
@@ -188,7 +209,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.bitterness === value}
                       onChange={handleSurveyChange}
                     />
-                    {value}
+                    {percentageValues[value]}
                   </label>
                 ))}
               </div>
@@ -205,7 +226,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.sweetness === value}
                       onChange={handleSurveyChange}
                     />
-                    {value}
+                    {percentageValues[value]}
                   </label>
                 ))}
               </div>
