@@ -166,7 +166,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
             <div className="survey-field">
               <label>Drink Type:</label>
               <div className="survey-options">
-                {['tea', 'coffee', 'chocolate'].map((value) => (
+                {['Tea', 'Coffee', 'Chocolate'].map((value) => (
                   <label key={value}>
                     <input
                       type="radio"
@@ -234,7 +234,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
             <div className="survey-field">
               <label>Caffeine Content:</label>
               <div className="survey-options">
-                {['none', 'low', 'medium', 'high'].map((value) => (
+                {['None', 'Medium', 'High'].map((value) => (
                   <label key={value}>
                     <input
                       type="radio"
