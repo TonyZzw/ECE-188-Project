@@ -21,7 +21,6 @@ def recommend_product(survey):
     period = categorize_time(current_time)
     
     new_data = {
-    'product_category': [survey['type']],
     'month': [month_name],
     'day': [day_name ],
     'caffeine_content': [survey['caffeine_content']],
