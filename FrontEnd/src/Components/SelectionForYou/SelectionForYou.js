@@ -15,17 +15,15 @@ const productDetails = {
   'Brewed herbal tea': { sizes: ['S', 'M', 'L'], prices: [2.00, 3.00, 4.00] }
 };
 
-const percentageValues = ["0%", "25%", "50%", "75%", "100%", "125%"];
 const descriptions = ["Very Low", "Low", "Medium", "High", "Very High", "Extreme"];
 
 function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setCartItems }) {
   const [activeButton, setActiveButton] = useState('SelectionForYou');
   const [survey, setSurvey] = useState({
-    type: 'tea',
     acidity: 0,
     bitterness: 0,
     sweetness: 0,
-    caffeine_content: 'none'
+    caffeine_content: 'None'
   });
   const [recommendedProduct, setRecommendedProduct] = useState(null);
   const [recommendedImage, setRecommendedImage] = useState(null);
@@ -41,7 +39,11 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
     const { name, value } = event.target;
     setSurvey({
       ...survey,
-      [name]: name === "acidity" || name === "bitterness" || name === "sweetness" ? parseInt(value) : value
+      [name]: name === "acidity" || name === "bitterness" || name === "sweetness" 
+      ? parseInt(value) 
+      : (name === "caffeine_content" && value === "Normal") 
+        ? "Medium" 
+        : value
     });
   };
 
@@ -163,23 +165,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
         <div className="card">
           <div className="survey-card">
             <h2>Choose Your Favour</h2>
-            <div className="survey-field">
-              <label>Drink Type:</label>
-              <div className="survey-options">
-                {['Tea', 'Coffee', 'Chocolate'].map((value) => (
-                  <label key={value}>
-                    <input
-                      type="radio"
-                      name="type"
-                      value={value}
-                      checked={survey.type === value}
-                      onChange={handleSurveyChange}
-                    />
-                    {value.charAt(0).toUpperCase() + value.slice(1)}
-                  </label>
-                ))}
-              </div>
-            </div>
+ 
             <div className="survey-field">
               <label>Acidity:</label>
               <div className="survey-options">
@@ -192,7 +178,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.acidity === value}
                       onChange={handleSurveyChange}
                     />
-                    {percentageValues[value]}
+                    {descriptions[value]}
                   </label>
                 ))}
               </div>
@@ -209,7 +195,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.bitterness === value}
                       onChange={handleSurveyChange}
                     />
-                    {percentageValues[value]}
+                    {descriptions[value]}
                   </label>
                 ))}
               </div>
@@ -226,7 +212,7 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
                       checked={survey.sweetness === value}
                       onChange={handleSurveyChange}
                     />
-                    {percentageValues[value]}
+                    {descriptions[value]}
                   </label>
                 ))}
               </div>
@@ -234,16 +220,16 @@ function SelectionForYou({ username, onBackToHome, onPageChange, cartItems, setC
             <div className="survey-field">
               <label>Caffeine Content:</label>
               <div className="survey-options">
-                {['None', 'Medium', 'High'].map((value) => (
+                {['None', 'Normal', 'High'].map((value) => (
                   <label key={value}>
                     <input
                       type="radio"
                       name="caffeine_content"
                       value={value}
-                      checked={survey.caffeine_content === value}
+                      checked={survey.caffeine_content === (value === 'Normal' ? 'Medium' : value)}
                       onChange={handleSurveyChange}
                     />
-                    {value.charAt(0).toUpperCase() + value.slice(1)}
+                    {value}
                   </label>
                 ))}
               </div>
