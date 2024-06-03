@@ -33,5 +33,6 @@ def recommend_product(survey):
     model = load('pipeline.pkl')
     new_df = pd.DataFrame(new_data)
     new_pred = model.predict(new_df)
+    print(new_pred[0])
     return {'product': new_pred[0]}
     
