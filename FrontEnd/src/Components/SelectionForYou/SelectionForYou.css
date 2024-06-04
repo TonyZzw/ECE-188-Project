@@ -82,7 +82,7 @@
   margin: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 650px;
+  max-width: 500px;
 }
 
 .survey-card h2, .recommendation h3 {
@@ -134,8 +134,8 @@
 }
 
 .recommendation-image {
-  max-width: 100%;
-  border-radius: 10px;
+  max-width: 20%;
+  border-radius: 5px;
 }
 
 .recommendation-title {
