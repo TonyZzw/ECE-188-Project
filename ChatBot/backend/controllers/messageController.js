@@ -12,16 +12,16 @@ bitterness, sweetness, and caffeine content on the following scales:
 - Caffeine: High, Medium, or None
 After collecting these preferences, use the product table to recommend the most fitting product based on their preferences.
 product table:
-{ name: "Gourmet brewed coffee", acidity: 5, bitterness: 4, sweetness: 1, caffeine: "High" },
-{ name: "Brewed Chai tea", acidity: 3, bitterness: 2, sweetness: 2, caffeine: "Medium" },
-{ name: "Hot chocolate", acidity: 1, bitterness: 1, sweetness: 5, caffeine: "None" },
-{ name: "Drip coffee", acidity: 3, bitterness: 4, sweetness: 1, caffeine: "High" },
-{ name: "Barista Espresso", acidity: 4, bitterness: 5, sweetness: 1, caffeine: "High" },
-{ name: "Brewed Black tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
-{ name: "Brewed Green tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
-{ name: "Brewed herbal tea", acidity: 2, bitterness: 1, sweetness: 1, caffeine: "None" },
-{ name: "Organic brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" },
-{ name: "Premium brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" }.`;
+{ category: "Coffee", name: "Gourmet brewed coffee", acidity: 5, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ category: "Tea", name: "Brewed Chai tea", acidity: 3, bitterness: 2, sweetness: 2, caffeine: "Medium" },
+{ category: "Chocolate", name: "Hot chocolate", acidity: 1, bitterness: 1, sweetness: 5, caffeine: "None" },
+{ category: "Coffee", name: "Drip coffee", acidity: 3, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ category: "Coffee", name: "Barista Espresso", acidity: 4, bitterness: 5, sweetness: 1, caffeine: "High" },
+{ category: "Tea", name: "Brewed Black tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
+{ category: "Tea", name: "Brewed Green tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
+{ category: "Tea", name: "Brewed herbal tea", acidity: 2, bitterness: 1, sweetness: 1, caffeine: "None" },
+{ category: "Coffee", name: "Organic brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ category: "Coffee", name: "Premium brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" }`;
 
 let chatLog = "Chat Log: Chat Bot: Hi, I'm a Chat Bot. What can I help you with today?\n";
 
