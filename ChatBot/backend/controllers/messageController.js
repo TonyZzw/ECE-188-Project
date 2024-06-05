@@ -10,17 +10,20 @@ bitterness, sweetness, and caffeine content on the following scales:
 - Bitterness: 0 (lowest) to 5 (highest)  
 - Sweetness: 0 (lowest) to 5 (highest)
 - Caffeine: High, Medium, or None
-After collecting these preferences, randomly select a product type from the following list and recommend a product based on their preferences:
-Gourmet brewed coffee, Brewed Chai tea, Hot chocolate, Drip coffee, Scone, Barista Espresso, Brewed Black tea, Brewed Green tea,
-Brewed herbal tea, Biscotti, Pastry, Organic brewed coffee, Premium brewed coffee.  
-Extract the user's preferences from the chat log using the following format:
-Acidity: <acidity_preference>
-Bitterness: <bitterness_preference>
-Sweetness: <sweetness_preference>  
-Caffeine: <caffeine_preference>`;
+After collecting these preferences, use the product table to recommend the most fitting product based on their preferences.
+product table:
+{ name: "Gourmet brewed coffee", acidity: 5, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ name: "Brewed Chai tea", acidity: 3, bitterness: 2, sweetness: 2, caffeine: "Medium" },
+{ name: "Hot chocolate", acidity: 1, bitterness: 1, sweetness: 5, caffeine: "None" },
+{ name: "Drip coffee", acidity: 3, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ name: "Barista Espresso", acidity: 4, bitterness: 5, sweetness: 1, caffeine: "High" },
+{ name: "Brewed Black tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
+{ name: "Brewed Green tea", acidity: 3, bitterness: 3, sweetness: 1, caffeine: "Medium" },
+{ name: "Brewed herbal tea", acidity: 2, bitterness: 1, sweetness: 1, caffeine: "None" },
+{ name: "Organic brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" },
+{ name: "Premium brewed coffee", acidity: 4, bitterness: 4, sweetness: 1, caffeine: "High" }.`;
 
-let chatLog = 
-  "Chat Log: Chat Bot: Hi, I'm a Chat Bot. What can I help you with today?\n";
+let chatLog = "Chat Log: Chat Bot: Hi, I'm a Chat Bot. What can I help you with today?\n";
 
 async function handleMessage(req, res) {
   const content = req.body.message;
@@ -29,60 +32,43 @@ async function handleMessage(req, res) {
     return res.status(400).json({ error: "Empty message" });
   }
 
-  if (chatLog.toLowerCase().includes("recommend")) {
-    chatLog += "User: " + content + "\n";
-    
-    const response = await callGPT(content, system, chatLog);
-    chatLog += "Chat Bot: " + response + "\n";
+  chatLog += "User: " + content + "\n";
+  
+  if (content.toLowerCase().includes("recommend a drink")) {
+    const promptPreferences = "Please rate your preference for Acidity, Bitterness, and Sweetness on a scale from 0 (lowest) to 5 (highest), and your preference for Caffeine as High, Medium, or None.";
+    chatLog += "Chat Bot: " + promptPreferences + "\n";
+    return res.status(200).json({ message: promptPreferences });
+  }
+  
+  const preferencePattern = /Acidity: (\d), Bitterness: (\d), Sweetness: (\d), Caffeine: (High|Medium|None)/i;
+  const match = preferencePattern.exec(chatLog);
+  
+  if (match) {
+    const [_, acidity, bitterness, sweetness, caffeine] = match;
 
-    if (chatLog.includes("Acidity:") && chatLog.includes("Bitterness:") && 
-        chatLog.includes("Sweetness:") && chatLog.includes("Caffeine:")) {
-      
-      const acidity = chatLog.match(/Acidity: (\d+)/)[1];
-      const bitterness = chatLog.match(/Bitterness: (\d+)/)[1];  
-      const sweetness = chatLog.match(/Sweetness: (\d+)/)[1];
-      const caffeine = chatLog.match(/Caffeine: (\w+)/)[1];
+    const recommendationJson = {
+      acidity: parseInt(acidity),
+      bitterness: parseInt(bitterness),
+      sweetness: parseInt(sweetness),
+      caffeine_content: caffeine
+    };
 
-      const recommendationJson = {
-        acidity: acidity,
-        bitterness: bitterness, 
-        sweetness: sweetness,
-        caffeine_content: caffeine,
-      };
+    try {
+      const flaskResponse = await axios.post('http://localhost:5002/recommend', recommendationJson);
+      const randomProductType = flaskResponse.data.product;
+      const recommendation = `Based on your preferences of Acidity: ${acidity}, Bitterness: ${bitterness}, Sweetness: ${sweetness}, and Caffeine: ${caffeine}, I recommend trying a ${randomProductType}! Enjoy!`;
 
-      try {
-        const flaskResponse = await axios.post('http://localhost:5002/recommend', recommendationJson);
-        const randomProductType = flaskResponse.data.product;
-        const recommendation = `Based on your preferences of Acidity: ${acidity}, Bitterness: ${bitterness}, Sweetness: ${sweetness}, and Caffeine: ${caffeine}, I recommend trying a ${randomProductType}! Enjoy!`;  
-
-        chatLog += "Chat Bot: " + recommendation + "\n";
-        return res.json({ message: recommendation });
-      } catch (error) {
-        console.error('Error communicating with Flask server:', error);
-        return res.status(500).json({ error: 'Internal server error' });
-      }
-
-      // Choose a random product type
-      // const productTypes = ['Gourmet brewed coffee', 'Brewed Chai tea', 'Hot chocolate', 'Drip coffee',
-      //                       'Scone', 'Barista Espresso', 'Brewed Black tea', 'Brewed Green tea',  
-      //                       'Brewed herbal tea', 'Biscotti', 'Pastry', 'Organic brewed coffee',
-      //                       'Premium brewed coffee'];
-      // const randomProductType = productTypes[Math.floor(Math.random() * productTypes.length)];
-
-      // const recommendation = `Based on your preferences of Acidity: ${acidity}, Bitterness: ${bitterness}, Sweetness: ${sweetness}, and Caffeine: ${caffeine}, I recommend trying a ${randomProductType}! Enjoy!`;  
-      // chatLog += "Chat Bot: " + recommendation + "\n";
-      // return res.json({ message: recommendation });
+      chatLog += "Chat Bot: " + recommendation + "\n";
+      return res.json({ message: recommendation });
+    } catch (error) {
+      console.error('Error communicating with the Flask server:', error);
+      return res.status(500).json({ error: 'Internal server error' });
     }
-    
-    return res.json({ message: response });
   }
 
-  const response = await callGPT(content, system, chatLog); 
-  
-  chatLog += "User: " + content + "\n";
+  const response = await callGPT(content, system, chatLog);
   chatLog += "Chat Bot: " + response + "\n";
-  
-  return res.json({ message: response });
+  return res.status(200).json({ message: response });
 }
 
 module.exports = { handleMessage };
